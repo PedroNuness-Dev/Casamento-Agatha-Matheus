@@ -1,0 +1,45 @@
+:host {
+  .container {
+    text-align: center;
+    padding: 5px 0;
+    font-family: 'Caveat', cursive;
+    color: #4b3428;
+  }
+
+  h1{
+    margin: 0;
+    font-weight: 600;
+    font-size: 2.5rem;
+  }
+
+  .divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .line {
+    width: 120px;
+    height: 1px;
+    background: currentColor;
+  }
+
+  .heart {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+  }
+
+  @media(max-width: 375px){
+    h1{
+      font-size: 1.8rem;
+    }
+  }
+
+  @media(max-width: 390px){
+    h1{
+      font-size: 2rem;
+    }
+  }
+}
