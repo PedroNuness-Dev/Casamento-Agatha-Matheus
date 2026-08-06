@@ -1,4 +1,7 @@
 :host {
+  display: block;
+  overflow-x: hidden;
+
   .container-title {
     padding: 5px 0;
     text-align: center;
@@ -35,6 +38,7 @@
     display: flex;
     align-items: stretch;
     justify-content: center;
+    overflow: hidden;
   }
 
   .header-container-image {
@@ -42,6 +46,27 @@
     flex: 1;
     align-items: center;
     justify-content: center;
+    position: relative;
+
+    img {
+      display: block;
+      width: 90%;
+    }
+
+    .blob-text {
+      position: absolute;
+      bottom: 13%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60%;
+
+      margin: 0;
+      text-align: center;
+      color: #f5efe6;
+      font-family: "Caveat", cursive;
+      font-size: 2.5rem;
+      line-height: 1.4;
+    }
   }
 
   .header-container-text {
@@ -86,8 +111,6 @@
     display: none;
   }
 
-  // 375px e 390px eram idênticos: unificados no maior breakpoint,
-  // que já cobre o menor
   @media (max-width: 390px) {
     h1 {
       font-size: 2rem;
@@ -97,8 +120,16 @@
       flex-direction: column;
     }
 
-    .header-container-image img {
-      width: 120%;
+    .header-container-image {
+      img {
+        width: 120%;
+      }
+
+      .blob-text {
+        font-size: 1.390rem;
+        bottom: 13%;
+        width: 70%;
+      }
     }
 
     .header-container-text {
@@ -118,7 +149,7 @@
       padding-left: 40px;
     }
 
-    .image-left img{
+    .image-left img {
       width: 150px;
     }
 
