@@ -6,3 +6,45 @@
     <img class="logo-am" src="logo.png" alt="">    
   </div>
 </section>
+<section class="countdown-section">
+
+  <div class="container-title">
+    <h2>Contagem Regressiva</h2>
+    <p>
+      Cada segundo nos aproxima do dia mais especial das nossas vidas.
+    </p>
+  </div>
+
+  <div class="countdown-container">
+
+    <div class="time-box">
+      <span class="number">{{ dias() }}</span>
+      <span class="label">Dias</span>
+    </div>
+
+    <div class="time-box">
+      <span class="number">{{ horas() }}</span>
+      <span class="label">Horas</span>
+    </div>    
+
+    <div class="time-box">
+      <span class="number">{{ minutos() }}</span>
+      <span class="label">Min</span>
+    </div>    
+
+    <div class="time-box">
+      <span class="number">{{ segundos() }}</span>
+      <span class="label">Seg</span>
+    </div>
+
+  </div>
+
+  <h3 class="footer-text">
+    Para o nosso <span>"Sim"</span>
+    <img src="heart.png" alt="">
+  </h3>
+
+  <p class="date">
+    20 de Novembro de 2026
+  </p>
+</section>

@@ -1,6 +1,13 @@
 :host {
   display: block;
   overflow-x: hidden;
+  box-sizing: border-box;
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: inherit;
+  }
 
   .invite-section {
     padding: 60px 20px;
@@ -28,6 +35,218 @@
     }
   }
 
+  .countdown-section{
+
+    width:100%;
+    padding: 20px 20px;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+
+    text-align:center;
+  }
+
+  .container-title{
+
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+
+      h2{
+
+          font-family:"Parisienne",cursive;
+          font-size:clamp(2.8rem,5vw,4rem);
+
+          color:#6F5A4A; 
+
+          margin:0;
+      }
+
+      p{
+
+          margin-top:12px;
+          max-width:650px;
+
+          font-family:"Alice",serif;
+          font-size:1.25rem;
+
+          color:#7d746d;
+
+          line-height:1.7;
+      }
+
+  }
+
+  .countdown-container{
+
+      margin:60px 0 45px;
+
+      display:flex;
+      align-items:center;
+      justify-content:center;
+
+      gap:18px;
+
+      flex-wrap:wrap;
+
+  }
+
+  .time-box{
+
+      width:125px;
+      height:125px;
+
+      border-radius:18px;
+
+      background:#faf8f6;
+
+      border:1px solid #ece5de;
+
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+
+      box-shadow:
+          0 10px 30px rgba(0,0,0,.05);
+
+      transition:.3s;
+
+  }
+
+  .time-box:hover{
+
+      transform:translateY(-6px);
+
+      box-shadow:
+          0 20px 40px rgba(0,0,0,.08);
+
+  }
+
+  .number{
+
+      font-family:"Alice",serif;
+
+      font-size:3rem;
+
+      font-weight:bold;
+
+      color:#7B5E47; 
+
+      line-height:1;
+
+  }
+
+  .label{
+
+      margin-top:12px;
+
+      font-family:"Alice",serif;
+
+      text-transform:uppercase;
+
+      letter-spacing:2px;
+
+      font-size:.78rem;
+
+      color:#8d837b;
+
+  }
+
+  .separator{
+
+      font-size:2.5rem;
+
+      color:#bca893;
+
+      margin-top:-25px;
+
+  }
+
+  .footer-text{
+
+      font-family:"Alice",serif;
+
+      font-size:2.4rem;
+
+      font-weight:normal;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+
+      color:#6F5A4A;
+
+      margin:0;
+
+      span{
+
+          color:#9E7A5F; 
+
+      }
+
+      img{
+          width:45px;
+          margin-bottom:18px;
+          animation:pulse 2.5s infinite;
+      }
+  }
+
+  .date{
+
+      margin-top:15px;
+
+      font-family:"Alice",serif;
+
+      font-size:1rem;
+
+      color:#8a8179;
+
+      letter-spacing:2px;
+
+  }
+
+  @keyframes pulse{
+
+      0%{
+
+          transform:scale(1);
+
+      }
+
+      50%{
+
+          transform:scale(1.12);
+
+      }
+
+      100%{
+
+          transform:scale(1);
+
+      }
+
+  }
+
+  @media (max-width: 900px) {
+
+    .countdown-container{
+      gap: 14px;
+    }
+
+    .time-box{
+      width: 105px;
+      height: 105px;
+    }
+
+    .number{
+      font-size: 2.5rem;
+    }
+
+  }
+
   @media (max-width: 600px) {
     .invite-section {
       padding: 60px 0; 
@@ -40,6 +259,68 @@
 
     .logo-am {                  
       width: 300px;
+    }
+    
+    .container-title{
+
+      h2{
+        font-size: 2.6rem;
+      }
+
+      p{
+        font-size: 1rem;
+        padding: 0 24px;
+        line-height: 1.6;
+      }
+
+    }
+
+    .countdown-section{
+      padding: 70px 15px;
+    }
+
+    .countdown-container{
+
+      display: grid;
+
+      grid-template-columns: repeat(2, 1fr);
+
+      gap: 18px;
+
+      width: 100%;
+
+      max-width: 280px;
+
+      margin-inline: auto;
+      margin-block: 45px;
+
+    }
+
+    .time-box{
+
+      width: 100%;
+      height: 95px;
+
+    }
+
+    .number{
+      font-size: 2.2rem;
+    }
+
+    .label{
+      margin-top: 8px;
+      font-size: .72rem;
+      letter-spacing: 1px;
+    }
+
+    .footer-text{
+      font-size: 2rem;
+      padding: 0 20px;
+    }
+
+    .date{
+      font-size: .95rem;
+      letter-spacing: 1px;
     }
   }
 }
