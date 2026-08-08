@@ -1,4 +1,4 @@
-:root{
+:root{ //Style global
     --primary-color:#F7EBDF;
     --text-color:#4E4039;
 }
@@ -6,6 +6,7 @@
 *{
     margin:0;
     padding:0;
+    box-sizing: border-box;
 }
 
 html{

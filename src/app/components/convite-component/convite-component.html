@@ -3,9 +3,50 @@
 
 
   <div class="invite-monogram">    
-    <img class="logo-am" src="logo.png" alt="">    
+    <img class="logo-am" src="Monograma Ofc.png" alt="Monograma">        
   </div>
 </section>
+
+<main class="scene">
+  <section class="strip-wrap" aria-label="Calendário de novembro">
+    <div class="strip-wrap__frame">
+
+      <header class="strip-wrap__masthead">
+        <span class="strip-wrap__month">Novembro</span>
+        <span class="strip-wrap__year">2026</span>
+      </header>
+
+      <div class="calendar-strip" #strip>
+        <div class="calendar-strip__track">
+          @for (cell of dias_tirinha(); track cell.day) {
+            <div
+              class="day-cell"
+              [class.day-cell--featured]="cell.featured"
+            >
+              <div class="day-cell__weekday-row">
+                <span class="day-cell__weekday">{{ cell.weekday }}</span>
+              </div>
+
+              <div class="day-cell__body">
+                <span class="day-cell__number">{{ cell.day }}</span> 
+                @if (cell.featured) {
+                  <img class="day-cell__heart" src="heart-png-29.png" alt="">
+                }      
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+
+      <div class="strip-wrap__perforation" aria-hidden="true"></div>
+    </div>
+
+    <p class="strip-wrap__caption">
+      20 de novembro de 2026 — <span class="strip-wrap__caption-accent">nosso dia</span> ♡
+    </p>
+  </section>
+</main>
+
 <section class="countdown-section">
 
   <div class="container-title">
@@ -43,8 +84,24 @@
     Para o nosso <span>"Sim"</span>
     <img src="heart.png" alt="">
   </h3>
+</section>
 
-  <p class="date">
-    20 de Novembro de 2026
-  </p>
+<section class="envelope-section" #revealSection>
+  <div id="wrapper">
+    <div class="envelope" #envelopeRef>
+      <div class="flap front"></div>
+      <div class="flap top"></div>
+      <div class="letter">
+         <p class="letter-text">
+          "O amor é paciente, o amor é bondoso...<br>
+          tudo sofre, tudo crê, tudo espera, tudo suporta."
+          <br><strong> 1 Coríntios 13</strong>
+        </p>
+    </div>
+    </div>    
+  </div>
+</section>
+<section class="invite-image">
+  <h2>Convidamos você para esse momento tão especial!</h2>
+  <img src="Wedding Planner.png" alt="">
 </section>
