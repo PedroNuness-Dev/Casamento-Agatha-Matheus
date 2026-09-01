@@ -2,7 +2,6 @@
   display: block;
   overflow-x: hidden;
   box-sizing: border-box;
-  --cell-width: 168px;
 
   *,
   *::before,
@@ -11,16 +10,17 @@
   }
 
   .invite-section {
-    padding: 60px 20px 0 20px;
     text-align: center;    
+    background-color: #4b3428;
+    padding: 20px 0;
   }
 
   .invite-title {
     font-family: "Parisienne", cursive;
-    font-size: 3.5rem;
-    color: #4b3428;
-    margin: 0 0 30px;
-    line-height: 1.3;
+    font-size: 2.5rem;
+    color: #F7EBDF;
+    font-weight: 500;
+    padding: 10px 0;
   }
 
   .invite-monogram {
@@ -239,15 +239,17 @@
     display: flex;
     justify-content: center;
 
-    padding: 110px 0 260px;
+    padding: 110px 0;
   }
 
+  // Todo o tamanho do envelope/carta é controlado por este único font-size.
+  // Ele cresce suavemente com a largura da tela (sem "pulos" de breakpoint),
+  // e todos os elementos abaixo estão em "em", então escalam juntos.
   #wrapper {
-    width: 400px;
+    width: max-content;
     margin: 0 auto;
     position: relative;
-    transform: scale(2);
-    transform-origin: top center;
+    font-size: clamp(1.3rem, 1rem + 1vw, 2.3rem);
   }
 
   .reveal-card {
@@ -289,8 +291,8 @@
   }
 
   .envelope {
-    width: 200px;
-    height: 100px;
+    width: 16.25em;
+    height: 8.125em;
     margin: 0 auto;
     background: #ddd;
     box-shadow: 
@@ -307,7 +309,7 @@
     width: 0;
     height: 0;
     border: 0 solid rgba(0,0,0,0.25);
-    border-width: 45px 100px;
+    border-width: 3.65625em 8.125em;
     border-top-color: transparent;
     z-index: 2;
   }
@@ -317,7 +319,7 @@
     width: 100%;
     height: 0;
     border: 0 solid transparent;
-    border-width: 50px 100px;
+    border-width: 4.0625em 8.125em;
     z-index: 3;
   }
   .envelope .flap.front {
@@ -331,15 +333,15 @@
     width: 100%;
     height: 0;
     position: absolute;
-    left: -100px;
-    bottom: -50px;
+    left: -8.125em;
+    bottom: -4.0625em;
     border: 0 solid transparent;
-    border-width: 49px 100px;
+    border-width: 3.98125em 8.125em;
     border-bottom-color: #eee;
   }
 
   .envelope .flap.top {
-    border-top-width: 55px;
+    border-top-width: 4.46875em;
     border-top-color: #aaa;
     z-index: 3;
     animation-duration: 1s;
@@ -354,22 +356,22 @@
   .envelope .flap.top:after {
     content: '';
     position: absolute;
-    left: -100px; 
-    top: -55px; 
+    left: -8.125em; 
+    top: -4.46875em; 
     width: 100%;
     height: 0;
     border: 0 solid transparent;
-    border-width: 54px 100px;
+    border-width: 4.3875em 8.125em;
     border-top-color: #eee;
   }
 
   .envelope .letter {
     position: absolute;
-    width: 194px;
-    height: 84px;
+    width: 15.75em;
+    height: 6.8125em;
     background: #fff;
-    top: 8px;
-    left: 3px;
+    top: 0.625em;
+    left: 0.25em;
     border:none;
     z-index: 1;    
     animation-duration: 2s;
@@ -403,7 +405,7 @@
     padding: 8px;
 
     font-family: "Alice", serif;
-    font-size: .68rem;
+    font-size: .78rem;
     line-height: 1.4;
     color: #6F5A4A;
   }
@@ -421,7 +423,7 @@
   .envelope .letter:after {
     content: '';
     position: absolute;
-    width: 196px;
+    width: 15.9375em;
     height: 75%;
     left: -1px;
     background: #fff;
@@ -459,10 +461,10 @@
 
   @keyframes remove {
     50% {
-      top: -120px;
+      top: -9.75em;
     }
     100% {
-      top: 8px;
+      top: 0.625em;
       z-index: 3;
     }
   }
@@ -489,209 +491,162 @@
   $font-display: 'Caveat', cursive;
   $font-label:   'Bitter', Georgia, serif;
 
-  $strip-height:    200px;
-  $strip-height-sm: 260px;
-  $frame-radius:    6px;
-
-  .scene {
-    height: 60vh;
-    width: 100vw;
+  // ===== Calendário clássico (grid do mês inteiro) =====
+  .calendar-classic {
+    position: relative;
+    padding: 80px 60px 60px;
+    background-color: var(primary-color);
     overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background:
-      radial-gradient(120% 140% at 50% 20%, rgba(#3a3226, 0.55), transparent 60%),
-      var(--scene-bg);
+    text-align: center;
     margin: 50px 0;
-  }
 
-  .strip-wrap {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 22px;    
+    // raminhos decorativos em SVG nas laterais da seção (mesmo padrão do header)
+    .side-branch {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 110px;
+      color: #6f5a4a;
+      opacity: 0.45;
+      pointer-events: none;
+      z-index: 0;
 
-    &__frame {
-      position: relative;
-      width: 100%;
-      background: var(--primary-color);
-      border-radius: $frame-radius;
-      box-shadow:
-        0 2px 0 rgba(#000, 0.4),
-        0 40px 80px -30px rgba(#000, 0.75),
-        0 12px 30px -10px rgba(#000, 0.5);
-      overflow: hidden;
+      &--left {
+        left: 30px;
+      }
 
-      &::after {
-        content: '';
-        position: absolute;
-        inset: 0;
-        pointer-events: none;
-        opacity: 0.5;
-        background-image: radial-gradient(rgba(#000, 0.025) 1px, transparent 1px);
-        background-size: 3px 3px;
-        mix-blend-mode: multiply;
+      &--right {
+        right: 30px;
+        transform: translateY(-50%) scaleX(-1);
       }
     }
 
-    &__masthead {
+    &__grid {
       position: relative;
-      z-index: 2;
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      padding: clamp(14px, 2.4vw, 30px) clamp(24px, 4vw, 56px) 8px;
+      z-index: 1;
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 30px 20px 25px;
+
+      // efeito "cartão dentro do cartão", usando o tom de --paper-shadow
+      background: rgba(221, 204, 178, 0.32);
+      border-radius: 14px;
+      box-shadow:
+        0 18px 40px rgba(111, 90, 74, 0.12),
+        0 2px 10px rgba(111, 90, 74, 0.08);
     }
 
-    &__month {
-      font-family: $font-display;
-      font-weight: 700;
-      font-size: clamp(26px, 2.6vw, 42px);
-      color: var(--text-color);
-      letter-spacing: 0.5px;
+    // moldura ornamental ao redor dos números, presa nos cantos do grid
+    .frame-corner {
+      position: absolute;
+      width: clamp(45px, 7vw, 70px);
+      height: auto;
+      color: #6f5a4a;
+      opacity: 0.85;
+      pointer-events: none;
+      z-index: 0;
+
+      &--tl {
+        top: -18px;
+        left: -18px;
+        transform: scale(-1, -1);
+      }
+
+      &--tr {
+        top: -18px;
+        right: -18px;
+        transform: scaleY(-1);
+      }
+
+      &--bl {
+        bottom: -18px;
+        left: -18px;
+        transform: scaleX(-1);
+      }
+
+      &--br {
+        bottom: -18px;
+        right: -18px;
+      }
     }
 
-    &__year {
-      font-family: $font-display;
-      font-weight: 600;
-      font-size: clamp(18px, 1.6vw, 26px);
-      color: var(--ink-faint);
-    }
-
-    &__perforation {
-      height: 20px;
-      background:
-        repeating-linear-gradient(
-          to right,
-          transparent 0, transparent 10px,
-          rgba(0, 0, 0, 0.18) 10px, rgba(0, 0, 0, 0.18) 12px
-        );
-      background-position: center;
-      background-repeat: repeat-x;
-      background-size: 22px 1.5px;
-      margin: 0 clamp(24px, 4vw, 56px);
-      border-top: 1px solid var(--paper-shadow);
-    }
-
-    &__caption {
-      margin: 0;
-      font-family: $font-label;
-      font-size: 18px;
-      font-style: italic;
-      color: rgba(247, 235, 223, 0.55);
-      text-align: center;
-    }
-
-    &__caption-accent {
-      color: var(--heart-color);
-      font-style: normal;
-      font-weight: 600;
-    }
-  }
-
-  .calendar-strip {
-    position: relative;
-    width: 100%;
-    height: $strip-height;
-    overflow: hidden;    
-  }
-
-  .calendar-strip__track {
-    display: flex;
-    height: 100%;
-    width: 100%;
-    justify-content: center; 
-    align-items: center;
-  }
-
-  .day-cell {
-    position: relative;
-    flex: 0 0 auto;
-    width: var(--cell-width);
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;    
-    border-right: 1px solid var(--paper-shadow);
-
-   
-
-    &:first-child {
-      border-left: 1px solid var(--paper-shadow);
-    }
-
-    &__weekday-row {
-      width: 100%;
-      padding: 14px 6px 10px;
-      text-align: center;
-      background: rgba(0, 0, 0, 0.035);
-      border-bottom: 1px solid var(--paper-shadow);
+    &__weekdays {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      margin-bottom: 14px;
     }
 
     &__weekday {
-      font-family: $font-label;
-      font-weight: 700;
-      font-size: 12px;
-      letter-spacing: 0.4px;
-      color: var(--ink-soft);
-      text-transform: capitalize;
-      white-space: nowrap;
+      font-family: "Alice", serif;
+      font-size: 1.3rem;
+      color: #6f5a4a;
     }
 
-    &__body {
-      flex: 1;
-      width: 100%;
+    &__week {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      margin-bottom: 20px;
+    }
+
+    &__day {
       display: flex;
       align-items: center;
       justify-content: center;
+      height: 58px;
       position: relative;
     }
 
-    &__number {
-      display: block;
-      width: 100%;
-      text-align: center;
-      font-family: $font-display;
-      font-weight: 700;
-      font-size: 3.5rem;
-      color: var(--ink-faint);
+    &__day-number {
+      font-family: "Alice", serif;
+      font-size: 1.5rem;
+      color: #6f5a4a;
       position: relative;
       z-index: 2;
+
+      // mesma cor dos outros números, só um pouco maior e subida
+      &--featured {
+        color: #6f5a4a;
+        font-size: 1.7rem;
+        transform: translateY(-6px);
+      }
     }
 
     &__heart {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: contain; 
-      z-index: 1; 
-      pointer-events: none;
+      position: relative;
+      width: 58px;
+      height: 58px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
+      img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        z-index: 1;
+      }
+    }
+
+    // divisor floral entre o grid e a data por extenso
+    &__divider {
+      display: block;
+      width: clamp(140px, 25vw, 200px);
+      height: auto;
+      margin: 30px auto 0;
+      color: #6f5a4a;
       opacity: 0.7;
     }
 
-    &--featured {
-      background-color: var(--text-color);
-      color: var(--primary-color);
-
-      
-      .day-cell__weekday {
-        color: var(--primary-color);
-      }
-
-      .day-cell__weekday-row {
-        background: rgba(0, 0, 0, 0.15);
-      }
-
-      .day-cell__number {
-        color: var(--primary-color);
-        transform: translateY(-12%);
-      }
+    &__caption {
+      position: relative;
+      z-index: 1;
+      margin-top: 15px; // reduzido, já que o divisor cria o espaçamento
+      font-family: "Alice", serif;
+      letter-spacing: 3px;
+      font-size: 1.1rem;
+      color: #6f5a4a;
     }
   }
 
@@ -705,7 +660,7 @@
     padding: 8px;
 
     font-family: $font-display;
-    font-size: .95rem;
+    font-size: 1em;
     line-height: 1.4;
     color: #6F5A4A;
 
@@ -722,14 +677,6 @@
     }
   }
 
-   @media (max-width: 1024px) {
-    --cell-width: 136px;
-  }
-
-  @media (max-width: 640px) {
-    --cell-width: 108px;
-  }
-
   @media (max-width: 900px) {
 
     .countdown-container{
@@ -743,6 +690,18 @@
 
     .number{
       font-size: 2.5rem;
+    }
+
+    .calendar-classic {
+      padding: 60px 20px 45px;
+
+      .side-branch {
+        width: 80px;
+      }
+
+      .frame-corner {
+        width: clamp(35px, 6vw, 55px);
+      }
     }
   }
 
@@ -766,100 +725,157 @@
 
   @media (max-width: 600px) {
 
-    .day-cell__number {
-      font-size: 2.5rem;
-    }
-
     .invite-title {
-      font-size: 2.5rem;
-       padding: 0 20px;
+      font-size: 1.5rem;
+      padding: 0 20px;
     }
 
-    .invite-image{
+    .invite-image {
 
-      img{
+      img {
         width: 100%;
       }
 
-      h2{        
-        font-size: 2.5rem;      
+      h2 {
+        font-size: 2.5rem;
       }
     }
 
-    .logo-am {                  
+    .logo-am {
       width: 300px;
     }
-    
-    .container-title{
 
-      h2{
+    .container-title {
+
+      h2 {
         font-size: 2.6rem;
       }
 
-      p{
+      p {
         font-size: 1rem;
         padding: 0 24px;
         line-height: 1.6;
       }
-
     }
 
-    .countdown-section{
+    .countdown-section {
       padding: 70px 15px;
     }
 
-    .countdown-container{
-
+    .countdown-container {
       display: grid;
-
       grid-template-columns: repeat(2, 1fr);
-
       gap: 18px;
-
       width: 100%;
-
       max-width: 280px;
-
       margin-inline: auto;
       margin-block: 45px;
-
     }
 
-    .time-box{
-
+    .time-box {
       width: 100%;
       height: 95px;
-
     }
 
-    .number{
+    .number {
       font-size: 2.2rem;
     }
 
-    .label{
+    .label {
       margin-top: 8px;
       font-size: .72rem;
       letter-spacing: 1px;
     }
 
-    .footer-text{
+    .footer-text {
       font-size: 2rem;
       padding: 0 20px;
     }
 
-    .date{
+    .date {
       font-size: .95rem;
       letter-spacing: 1px;
     }
 
-    .envelope-section {      
-      min-height: 20px;      
-
-      padding: 40px 0 260px;
+    .envelope-section {
+      min-height: 20px;
+      padding: 40px 0 100px;
     }
 
-    #wrapper {
-      transform: scale(1.7);
+    // ================================
+    // CALENDÁRIO NO MOBILE
+    // ================================
+
+    .calendar-classic {
+      padding: 35px 25px 35px;
+      overflow: visible;
+
+      .side-branch {
+        display: none;
+      }
+
+      &__grid {
+        width: 100%;
+        max-width: 340px;
+        padding: 20px 10px 18px;
+        margin: 0 auto;
+      }
+
+      .frame-corner {
+        width: 38px;
+        opacity: 0.7;
+
+        &--tl {
+          top: -12px;
+          left: -12px;
+        }
+
+        &--tr {
+          top: -12px;
+          right: -12px;
+        }
+
+        &--bl {
+          bottom: -12px;
+          left: -12px;
+        }
+
+        &--br {
+          bottom: -12px;
+          right: -12px;
+        }
+      }
+
+      &__day {
+        height: 44px;
+      }
+
+      &__weekday {
+        font-size: 1rem;
+      }
+
+      &__day-number {
+        font-size: 1.15rem;
+
+        &--featured {
+          font-size: 1.3rem;
+        }
+      }
+
+      &__heart {
+        width: 44px;
+        height: 44px;
+      }
+
+      &__divider {
+        width: 130px;
+        margin-top: 20px;
+      }
+
+      &__caption {
+        font-size: 0.9rem;
+        letter-spacing: 1.5px;
+      }
     }
   }
 }

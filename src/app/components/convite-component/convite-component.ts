@@ -5,6 +5,7 @@ import {
   OnDestroy,
   OnInit,
   ViewChild,
+  computed,
   signal,
 } from '@angular/core';
 interface DayCell {
@@ -175,4 +176,30 @@ export class ConviteComponent implements OnInit, AfterViewInit, OnDestroy {
     const raw = new Intl.DateTimeFormat('pt-BR', { weekday: 'long' }).format(data);
     return raw.charAt(0).toUpperCase() + raw.slice(1);
   }
+
+  diasCalendario = computed(() => {
+  const ano = 2026;
+  const mes = 10; // novembro (0-indexed: janeiro=0)
+  const diaEspecial = 20;
+
+  const primeiroDiaSemana = new Date(ano, mes, 1).getDay(); // 0 = domingo
+  const totalDias = new Date(ano, mes + 1, 0).getDate();
+
+  const celulas: { dia: number | null; featured: boolean }[] = [];
+
+  for (let i = 0; i < primeiroDiaSemana; i++) {
+    celulas.push({ dia: null, featured: false });
+  }
+
+  for (let dia = 1; dia <= totalDias; dia++) {
+    celulas.push({ dia, featured: dia === diaEspecial });
+  }
+
+  const semanas: (typeof celulas)[] = [];
+  for (let i = 0; i < celulas.length; i += 7) {
+    semanas.push(celulas.slice(i, i + 7));
+  }
+
+  return semanas;
+});
 }
