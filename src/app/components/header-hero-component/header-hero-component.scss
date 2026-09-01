@@ -22,7 +22,9 @@
     img {
       position: absolute;
       top: 0;
-      width: 400px;
+
+      // Tamanho responsivo e gradual
+      width: clamp(120px, 25vw, 400px);
 
       &:first-of-type {
         left: 0;
@@ -114,7 +116,7 @@
   }
 
   .header-container-text {
-    position: relative; // referência para os raminhos decorativos
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -125,7 +127,6 @@
       font-size: 1.5rem;
     }
 
-    // raminhos decorativos em SVG, preenchendo o vazio lateral no desktop
     .side-branch {
       position: absolute;
       top: 50%;
@@ -200,10 +201,25 @@
     transform: rotate(-8deg);
     box-shadow: 2px 3px 6px rgba(0, 0, 0, 0.25);
 
-    // dente de serra nas duas pontas da fita; topo/base ficam retos
     clip-path: polygon(
-      6% 0%, 0% 12.5%, 6% 25%, 0% 37.5%, 6% 50%, 0% 62.5%, 6% 75%, 0% 87.5%, 6% 100%,
-      94% 100%, 100% 87.5%, 94% 75%, 100% 62.5%, 94% 50%, 100% 37.5%, 94% 25%, 100% 12.5%, 94% 0%
+      6% 0%,
+      0% 12.5%,
+      6% 25%,
+      0% 37.5%,
+      6% 50%,
+      0% 62.5%,
+      6% 75%,
+      0% 87.5%,
+      6% 100%,
+      94% 100%,
+      100% 87.5%,
+      94% 75%,
+      100% 62.5%,
+      94% 50%,
+      100% 37.5%,
+      94% 25%,
+      100% 12.5%,
+      94% 0%
     );
   }
 
@@ -217,15 +233,19 @@
     display: none;
   }
 
-  @media (max-width: 900px) {
-    .container-title img {
-      width: 200px;
-    }
+  // ==========================================
+  // TABLETS / TELAS MENORES
+  // ==========================================
 
+  @media (max-width: 900px) {
     .side-branch {
       display: none;
     }
   }
+
+  // ==========================================
+  // MOBILE
+  // ==========================================
 
   @media (max-width: 600px) {
     h1 {
@@ -238,10 +258,6 @@
 
     .container-title {
       padding: 15px 0;
-
-      img {
-        width: 200px;
-      }
 
       h1 {
         gap: 15px;
@@ -305,13 +321,13 @@
     }
   }
 
+  // ==========================================
+  // CELULARES PEQUENOS
+  // ==========================================
+
   @media (max-width: 400px) {
     .container-title {
       padding: 10px 0;
-
-      img {
-        width: 120px;
-      }
 
       h1 {
         gap: 8px;
