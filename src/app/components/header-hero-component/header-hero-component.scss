@@ -3,10 +3,40 @@
   overflow-x: hidden;
 
   .container-title {
+    position: relative;
     padding: 5px 0;
     text-align: center;
     font-family: 'Caveat', cursive;
     color: #4b3428;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    h1 {
+      display: flex;
+      gap: 50px;
+      justify-content: center;
+      font-family: 'Parisienne';
+    }
+
+    img {
+      position: absolute;
+      top: 0;
+      width: 400px;
+
+      &:first-of-type {
+        left: 0;
+      }
+
+      &:last-of-type {
+        right: 0;
+      }
+    }
+  }
+
+  .header-text {
+    display: flex;
+    flex-direction: column;
   }
 
   h1 {
@@ -39,6 +69,8 @@
     align-items: stretch;
     justify-content: center;
     overflow: hidden;
+    flex-direction: column;
+    gap: 10px;
   }
 
   .header-container-image {
@@ -47,10 +79,22 @@
     align-items: center;
     justify-content: center;
     position: relative;
+    flex-direction: column;
 
     img {
       display: block;
-      
+    }
+
+    div {
+      width: 100%;
+      text-align: center;
+      padding: 1.5% 0;
+      background-color: #4b3428;
+      color: #f5efe6;
+      font-size: 2.5rem;
+      font-family: "Parisienne", cursive;
+      margin-top: -40px;
+      box-shadow: #4b3428 1px 1px 1px;
     }
 
     .blob-text {
@@ -70,18 +114,36 @@
   }
 
   .header-container-text {
+    position: relative; // referência para os raminhos decorativos
     display: flex;
     align-items: center;
     justify-content: center;
-
-    h1 {
-      font-family: "Parisienne", cursive;
-      font-size: 3rem;
-    }
+    padding: 60px 20px;
 
     p {
       font-family: "Alice", serif;
       font-size: 1.5rem;
+    }
+
+    // raminhos decorativos em SVG, preenchendo o vazio lateral no desktop
+    .side-branch {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 100px;
+      color: #4b3428;
+      opacity: 0.5;
+      pointer-events: none;
+      z-index: 0;
+
+      &--left {
+        left: 30px;
+      }
+
+      &--right {
+        right: 30px;
+        transform: translateY(-50%) scaleX(-1);
+      }
     }
   }
 
@@ -98,7 +160,51 @@
   }
 
   .container-text-left {
+    position: relative;
     max-width: 700px;
+    background-color: #4b3428;
+    color: #f5efe6;
+    border-radius: 18px;
+    padding: 55px 45px 40px;
+    box-shadow: 3px 4px 10px rgba(0, 0, 0, 0.25);
+
+    h1 {
+      font-weight: 400;
+      font-size: 1.6rem;
+    }
+
+    p {
+      margin: 0;
+      margin-top: 30px;
+      line-height: 1.7;
+      text-align: center;
+    }
+  }
+
+  .ticket-title {
+    position: absolute;
+    top: -20px;
+    left: -60px;
+    z-index: 2;
+
+    width: 300px;
+    background-color: #e9dbc9;
+    color: #4b3428;
+    font-family: 'Caveat', cursive;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 1.25;
+
+    padding: 10px 28px;
+    transform: rotate(-8deg);
+    box-shadow: 2px 3px 6px rgba(0, 0, 0, 0.25);
+
+    // dente de serra nas duas pontas da fita; topo/base ficam retos
+    clip-path: polygon(
+      6% 0%, 0% 12.5%, 6% 25%, 0% 37.5%, 6% 50%, 0% 62.5%, 6% 75%, 0% 87.5%, 6% 100%,
+      94% 100%, 100% 87.5%, 94% 75%, 100% 62.5%, 94% 50%, 100% 37.5%, 94% 25%, 100% 12.5%, 94% 0%
+    );
   }
 
   .image-left {
@@ -111,18 +217,50 @@
     display: none;
   }
 
+  @media (max-width: 900px) {
+    .container-title img {
+      width: 200px;
+    }
+
+    .side-branch {
+      display: none;
+    }
+  }
+
   @media (max-width: 600px) {
     h1 {
-      font-size: 2rem;
+      font-size: 1.5rem;
     }
 
     .container-header {
       flex-direction: column;
     }
 
+    .container-title {
+      padding: 15px 0;
+
+      img {
+        width: 200px;
+      }
+
+      h1 {
+        gap: 15px;
+      }
+    }
+
+    .header-text {
+      padding: 0 100px;
+    }
+
     .header-container-image {
       img {
-        width: 120%;
+        width: 100%;
+        object-fit: cover;
+      }
+
+      div {
+        font-size: 1.5rem;
+        padding: 3% 0;
       }
 
       .blob-text {
@@ -134,10 +272,7 @@
 
     .header-container-text {
       align-items: center;
-
-      h1 {
-        font-size: 1.5rem;
-      }
+      padding: 45px 20px;
 
       p {
         font-size: 1.25rem;
@@ -146,7 +281,19 @@
 
     .container-text-left {
       max-width: 330px;
-      padding-left: 40px;
+      padding: 45px 25px 30px;
+
+      h1 {
+        font-size: 1.3rem;
+      }
+    }
+
+    .ticket-title {
+      top: -16px;
+      left: 5px;
+      width: 220px;
+      padding: 14px 20px;
+      letter-spacing: 2px;
     }
 
     .image-left img {
@@ -154,11 +301,80 @@
     }
 
     .title-divider {
-      display: block;
-      width: 100%;
-      margin: 8px 0 15px;
-      border: none;
-      border-top: 1px solid #4b3428;
+      display: none;
+    }
+  }
+
+  @media (max-width: 400px) {
+    .container-title {
+      padding: 10px 0;
+
+      img {
+        width: 120px;
+      }
+
+      h1 {
+        gap: 8px;
+        font-size: 1.6rem;
+      }
+    }
+
+    .header-text {
+      padding: 0 60px;
+    }
+
+    .header-text h1:last-child {
+      font-size: 1.2rem;
+    }
+
+    .divider {
+      gap: 6px;
+    }
+
+    .line {
+      width: 60px;
+    }
+
+    .header-container-image {
+      div {
+        font-size: 1.1rem;
+        padding: 4% 0;
+      }
+
+      .blob-text {
+        font-size: 0.95rem;
+        bottom: 15%;
+        width: 90%;
+        line-height: 1.25;
+      }
+    }
+
+    .header-container-text {
+      p {
+        font-size: 1rem;
+      }
+    }
+
+    .container-text-left {
+      max-width: 280px;
+      padding: 40px 18px 25px;
+
+      h1 {
+        font-size: 1.1rem;
+      }
+    }
+
+    .ticket-title {
+      top: -12px;
+      left: 5px;
+      width: 170px;
+      padding: 10px 14px;
+      font-size: 0.85rem;
+      letter-spacing: 1.5px;
+    }
+
+    .image-left img {
+      width: 100px;
     }
   }
 }
