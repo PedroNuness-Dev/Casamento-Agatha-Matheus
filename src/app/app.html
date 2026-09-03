@@ -1,3 +1,33 @@
+<div class="falling-flowers" aria-hidden="true">
+
+  @for (flower of flowers; track flower.id) {
+
+    <svg
+      class="falling-flower"
+      viewBox="0 0 30 45"
+      xmlns="http://www.w3.org/2000/svg"
+
+      [style.left.%]="flower.left"
+      [style.width.px]="flower.size"
+      [style.animation-duration.s]="flower.duration"
+      [style.animation-delay.s]="flower.delay"
+      [style.opacity]="flower.opacity">
+
+      <path
+        d="M15 2
+           C10 7 4 15 5 23
+           C6 31 11 39 15 43
+           C19 39 24 31 25 23
+           C26 15 20 7 15 2Z"
+        fill="#4b3428"
+      />
+
+    </svg>
+
+  }
+
+</div>
+
 <app-header-hero-component/>
 
 <app-history-component/>
