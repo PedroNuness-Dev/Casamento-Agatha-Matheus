@@ -20,8 +20,17 @@
     z-index: 2;
     font-family: "Parisienne", cursive;
     font-size: 3rem;
-    color: #4b3428;
+    color: #6f5a4a;
     text-align: center;
+  }
+
+  .title-connector {
+    display: block;
+    width: clamp(140px, 25vw, 200px);
+    height: auto;
+    margin: 8px auto 0;
+    color: #6f5a4a;
+    opacity: 0.7;
   }
 
   .invite-monogram {
@@ -553,7 +562,7 @@
     background-color: var(primary-color);
     overflow: hidden;
     text-align: center;
-    margin: 50px 0;
+    margin: 15px 0 50px;
 
     // raminhos decorativos em SVG nas laterais da seção (mesmo padrão do header)
     .side-branch {
@@ -732,6 +741,17 @@
     }
   }
 
+  .invite-lead {
+    max-width: 480px;
+    margin: 18px auto 0;
+    padding: 0 20px;
+
+    font-family: "Alice", serif;
+    font-size: 1.25rem;
+    text-align: center;
+    color: #7d746d; 
+  }
+
   @media (max-width: 900px) {
 
     .countdown-container{
@@ -831,6 +851,10 @@
       max-width: 280px;
       margin-inline: auto;
       margin-block: 45px;
+    }
+
+    .invite-lead{
+      font-size: 1rem;
     }
 
     .time-box {
