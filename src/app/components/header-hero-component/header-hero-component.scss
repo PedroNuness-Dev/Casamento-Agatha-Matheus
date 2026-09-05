@@ -36,13 +36,18 @@
 
       // Tamanho responsivo e gradual
       width: clamp(120px, 25vw, 400px);
+      height: auto;
 
       &:first-of-type {
         left: 0;
+        // flor-esquerda-header.png: 534x491
+        aspect-ratio: 534 / 491;
       }
 
       &:last-of-type {
         right: 0;
+        // flor-direita-header.png: 491x534
+        aspect-ratio: 491 / 534;
       }
     }
   }
@@ -107,6 +112,8 @@
 
     img {
       display: block;
+      // header_image2.png: 900x653
+      aspect-ratio: 900 / 653;
     }
 
     div {

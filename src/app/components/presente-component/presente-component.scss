@@ -1,0 +1,306 @@
+:host {
+  display: block;
+  overflow-x: hidden;
+  box-sizing: border-box;
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: inherit;
+  }
+
+  // ===== Paleta (mesmo padrão do resto do site) =====
+  $marrom-escuro:  #4b3428;
+  $marrom:         #6F5A4A;
+  $marrom-suave:   #7d746d;
+  $marrom-fraco:   #8d837b;
+  $marrom-acento:  #9E7A5F;
+  $bg-creme:       #F7EBDF;
+  $bg-card:        #faf8f6;
+  $borda-card:     #ece5de;
+
+  $font-display: "Parisienne", cursive;
+  $font-body:    "Alice", serif;
+
+  .presentes-wrapper {
+    width: 100%;
+    background: $bg-creme;
+    color: $marrom;
+    position: relative;
+  }
+
+  // ===== Header =====
+  .presentes-header {
+    text-align: center;
+
+    h2 {
+      margin: 0;
+      font-family: $font-display;
+      font-size: 3.5rem;
+      color: $marrom;
+    }
+
+    p{
+      text-align: center;
+      font-family:"Alice",serif;
+      font-size:1.25rem;
+
+      color:#7d746d;
+    }
+  }  
+
+  // ===== Lista =====
+  .presentes-lista {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 40px 20px;
+  }
+
+  .presente-item {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    padding: 45px 0;
+
+    &.invertido {
+      flex-direction: row-reverse;
+      text-align: right;
+
+      .presente-endereco,
+      .presente-badge {
+        justify-content: flex-end;
+      }
+    }
+  }
+
+  .divisor {
+    border: none;
+    border-top: 1px solid rgba($marrom, 0.18);
+    margin: 0 auto;
+    max-width: 900px;
+  }
+
+  // ===== Ícone do presente (cartão estilo time-box) =====
+  .presente-icone {
+    flex: 0 0 190px;
+    width: 190px;
+    height: 190px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: $bg-card;
+    border: 1px solid $borda-card;
+    border-radius: 18px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .05);
+    transition: .3s;
+
+    &:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, .08);
+    }
+  }
+
+  .gift-svg {
+    width: 68%;
+    height: auto;
+  }
+
+  .gift-outline {
+    fill: none;
+    stroke: $marrom;
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  // nova: sombra sutil embaixo da caixa
+  .gift-shadow {
+    fill: $marrom;
+    opacity: 0.08;
+  }
+
+  .decor {
+    fill: none;
+    stroke: $marrom-acento;
+    stroke-width: 2.5;
+    stroke-linejoin: round;
+  }
+
+  // ===== Conteúdo de texto =====
+  .presente-conteudo {
+    flex: 1;
+  }
+
+  .presente-titulo {
+    font-weight: 400;
+    font-family: $font-body;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: $marrom-fraco;
+    margin: 0 0 4px;
+
+    strong {
+      display: block;
+      font-family: $font-body;
+      font-weight: 400;
+      text-transform: none;
+      letter-spacing: 0.5px;
+      font-size: clamp(2rem, 3vw, 2.8rem);
+      color: $marrom-escuro;
+      margin-top: 2px;
+    }
+  }
+
+  .presente-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: $marrom-escuro;
+    color: #fff;
+    font-family: $font-body;
+    font-size: 0.92rem;
+    letter-spacing: 0.5px;
+    padding: 7px 16px;
+    border-radius: 8px;
+    margin: 8px 0 16px;
+
+    .badge-icon {
+      width: 14px;
+      height: 14px;
+    }
+  }
+
+  .presente-endereco {
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+    font-family: $font-body;
+    font-size: 0.95rem;
+    color: $marrom-suave;
+    margin: 6px 0;
+
+    &.sem-link {
+      padding-left: 20px;
+    }
+
+    a {
+      color: $marrom-acento;
+      text-decoration: underline;
+      font-weight: 700;
+    }
+
+    .pin-icon {
+      flex: 0 0 15px;
+      width: 15px;
+      height: 15px;
+      margin-top: 3px;
+      color: $marrom-acento;
+    }
+  }
+
+  .presente-fone {
+    font-family: $font-body;
+    font-size: 1.02rem;
+    letter-spacing: 1px;
+    color: $marrom-fraco;
+    margin: 12px 0 0;
+  }
+
+  // ===== Footer =====
+  .presentes-footer {
+    background: $marrom-escuro;
+    color: $bg-creme;
+    text-align: center;
+    border-radius: 8px;
+    max-width: 1000px;
+    margin: 30px auto 60px;
+    padding: 24px 30px;
+    font-family: $font-body;
+    font-size: 0.95rem;
+    line-height: 1.7;
+
+    p {
+      margin: 0;
+    }
+  }
+
+  .side-branch {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 110px;
+    color: $marrom;
+    opacity: 0.45;
+    pointer-events: none;
+    z-index: 0;
+
+    &--left {
+        left: 30px;
+    }
+
+    &--right {
+        right: 30px;
+        transform: translateY(-50%) scaleX(-1);
+    }
+    }
+
+  // ===== Responsivo =====
+  @media (max-width: 900px) {
+    .presente-item {
+      gap: 30px;
+    }
+
+    .presente-icone {
+      flex: 0 0 150px;
+      width: 150px;
+      height: 150px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .presentes-lista {
+      padding: 0 20px 10px;
+    }
+
+    .presentes-header {
+      h2 {
+        font-size: 2rem;
+      }
+      p{
+        font-size: 1rem;
+      }
+    }  
+
+    .presente-item,
+    .presente-item.invertido {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 18px;
+      padding: 35px 0;
+    }
+
+    .presente-icone {
+      flex: 0 0 auto;
+      width: 130px;
+      height: 130px;
+    }
+
+    .presente-endereco,
+    .presente-badge {
+      justify-content: center !important;
+    }
+
+    .presentes-footer {
+      margin: 20px 20px 45px;
+      padding: 20px 22px;
+    }
+
+    .side-branch {
+        display: none;
+    }
+  }
+}

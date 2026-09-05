@@ -5,6 +5,7 @@ import { RouterOutlet } from '@angular/router';
 import { HeaderHeroComponent } from './components/header-hero-component/header-hero-component';
 import { HistoryComponent } from './components/history-component/history-component';
 import { ConviteComponent } from './components/convite-component/convite-component';
+import { PresenteComponent } from './components/presente-component/presente-component';
 
 interface FallingFlower {
   id: number;
@@ -22,7 +23,8 @@ interface FallingFlower {
     RouterOutlet,
     HeaderHeroComponent,
     HistoryComponent,
-    ConviteComponent
+    ConviteComponent,
+    PresenteComponent
   ],
 
   templateUrl: './app.html',
