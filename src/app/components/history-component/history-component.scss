@@ -96,12 +96,144 @@
     }
   }
 
+  .memories-photos {
+    position: absolute;
+    inset: 0;
+    z-index: 1; // fica acima do marquee-bg (z-index: 0)
+    pointer-events: none; // opcional, se não quiser interação
+  }
+
+  .photo {
+    position: absolute;
+    border-radius: 8px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+    object-fit: cover;
+    pointer-events: auto; // reativa interação só nas fotos, se quiser
+  }
+
+  // Distribuídas em 3 "faixas" horizontais equidistantes (~16%, 50%, 84%)
+  // e verticalmente escalonadas, pra manter espaçamento uniforme no desktop
+  .photo-1 {
+    width: 380px;
+    top: 10%;
+    left: 16%;
+    transform: translateX(-50%) rotate(-6deg);
+  }
+
+  .photo-2 {
+    width: 400px;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%) rotate(5deg);
+  }
+
+  .photo-3 {
+    width: 360px;
+    bottom: 8%;
+    left: 84%;
+    transform: translateX(-50%) rotate(-3deg);
+  }
+
+  @media (max-width: 900px) {
+    .memories-wrapper {
+      min-height: 750px;
+    }
+
+    .photo-1 {
+      width: 260px;
+      top: 8%;
+      left: 18%;
+    }
+
+    .photo-2 {
+      width: 270px;
+      top: 38%;
+      left: 50%;
+    }
+
+    .photo-3 {
+      width: 240px;
+      bottom: 8%;
+      left: 82%;
+    }
+  }
+
+    // Mobile: empilha as fotos verticalmente para não haver colisão
   @media (max-width: 600px){
 
     .memories-section {
         .memories-title {
             font-size: 2rem;
         }
+    }
+
+    .memories-wrapper {
+      min-height: auto;
+      mask-image: none;
+      -webkit-mask-image: none;
+      padding: 20px 0;
+    }
+
+    .marquee-bg {
+      position: absolute;
+      inset: 0;
+      // fade só vertical no mobile, pra não perder o efeito de fundo
+      mask-image: linear-gradient(
+        to bottom,
+        transparent 0%,
+        black 15%,
+        black 85%,
+        transparent 100%
+      );
+      -webkit-mask-image: linear-gradient(
+        to bottom,
+        transparent 0%,
+        black 15%,
+        black 85%,
+        transparent 100%
+      );
+      min-height: 580px;
+    }
+
+    .memories-photos {
+      position: relative;
+      inset: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 28px;
+      padding: 24px 0;
+      min-height: 580px;
+      justify-content: center;
+    }
+
+    .photo {
+      position: relative;
+      top: auto !important;
+      left: auto !important;
+      right: auto !important;
+      bottom: auto !important;
+      width: 55vw !important;
+      max-width: 210px;
+      align-self: center !important;
+      margin: 0 !important;
+      // molduras tipo polaroid, ajuda a "ancorar" a foto e disfarça
+      // qualquer imagem com proporção diferente
+      border: 6px solid #fff;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+      aspect-ratio: 4 / 5;
+    }
+
+    .photo-1 {
+      transform: translateX(-14%) rotate(-6deg) !important;
+    }
+
+    .photo-2 {
+      transform: translateX(16%) rotate(5deg) !important;
+    }
+
+    .photo-3 {
+      transform: translateX(-6%) rotate(-3deg) !important;
     }
   }
 }
