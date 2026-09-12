@@ -1,3 +1,78 @@
+<!-- ===== Ponte entre a carta e o carrossel de fotos ===== -->
+<p class="carousel-caption">O tempo passou, e chegamos até aqui juntos</p>
+<!-- ===== Carrossel contínuo de fotos ===== -->
+<div class="flower-carousel">
+
+  <!-- sprite: definido 1x, reaproveitado via <use> em todos os cards -->
+  <svg class="carousel-sprite-defs" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="carousel-corner-flower" viewBox="0 0 40 40">
+        <ellipse cx="20" cy="11" rx="4.5" ry="8" />
+        <ellipse cx="20" cy="29" rx="4.5" ry="8" />
+        <ellipse cx="11" cy="20" rx="8" ry="4.5" />
+        <ellipse cx="29" cy="20" rx="8" ry="4.5" />
+        <circle class="flower-center" cx="20" cy="20" r="3.5" />
+      </symbol>
+    </defs>
+  </svg>
+
+  <div class="flower-carousel-track">
+
+    @for (img of carouselImages; track img) {
+      <div class="flower-carousel-item">
+        <div class="polaroid-frame">
+          <div class="polaroid-photo">
+            <img [src]="img" alt="" loading="lazy" />
+          </div>
+          <span class="film-perf" aria-hidden="true"></span>
+          <div class="polaroid-caption">
+            <span class="polaroid-caption-text">Agatha &amp; Matheus</span>
+          </div>
+        </div>
+      </div>
+      <div class="flower-divider" aria-hidden="true">
+        <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+          <g transform="translate(20,20)">
+            <ellipse rx="8.5" ry="3.5" transform="rotate(0)" />
+            <ellipse rx="8.5" ry="3.5" transform="rotate(72)" />
+            <ellipse rx="8.5" ry="3.5" transform="rotate(144)" />
+            <ellipse rx="8.5" ry="3.5" transform="rotate(216)" />
+            <ellipse rx="8.5" ry="3.5" transform="rotate(288)" />
+          </g>
+          <circle class="flower-center" cx="20" cy="20" r="3" />
+        </svg>
+      </div>
+    }
+
+    <!-- mesma sequência repetida: garante o loop contínuo sem "salto" -->
+    @for (img of carouselImages; track img) {
+      <div class="flower-carousel-item" aria-hidden="true">
+        <div class="polaroid-frame">
+          <div class="polaroid-photo">
+            <img [src]="img" alt="" loading="lazy" />
+          </div>
+          <span class="film-perf" aria-hidden="true"></span>
+          <div class="polaroid-caption">
+            <span class="polaroid-caption-text">Agatha &amp; Matheus</span>
+          </div>
+        </div>
+      </div>
+      <div class="flower-divider" aria-hidden="true">
+        <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+          <g transform="translate(20,20)">
+            <ellipse rx="8.5" ry="3.5" transform="rotate(0)" />
+            <ellipse rx="8.5" ry="3.5" transform="rotate(72)" />
+            <ellipse rx="8.5" ry="3.5" transform="rotate(144)" />
+            <ellipse rx="8.5" ry="3.5" transform="rotate(216)" />
+            <ellipse rx="8.5" ry="3.5" transform="rotate(288)" />
+          </g>
+          <circle class="flower-center" cx="20" cy="20" r="3" />
+        </svg>
+      </div>
+    }
+
+  </div>
+</div>
 <h1 class="invite-title">Hoje, começamos a escrever o nosso para sempre!</h1>
 <svg class="title-connector" viewBox="0 0 220 30" xmlns="http://www.w3.org/2000/svg">
   <path d="M0 15 H80 M140 15 H220" stroke="currentColor" stroke-width="1.5" fill="none"/>
@@ -171,10 +246,6 @@
     </div>    
   </div>
 </section>
-
-<div class="invite-monogram">    
-    <img class="logo-am" src="logo.png" alt="Monograma">        
-</div>
 <section class="invite-image">
   <h2>Convidamos você para esse momento tão especial!</h2>
   <img src="Wedding Planner.png" alt="">

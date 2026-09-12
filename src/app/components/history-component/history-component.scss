@@ -1,4 +1,11 @@
 :host {
+
+  // ===== Paleta (mesmo padrão do resto do site) =====
+  $marrom-escuro:  #4b3428;
+  $marrom-acento:  #9E7A5F;
+  $bg-creme:       #F7EBDF;
+  $bg-card:        #faf8f6;
+
   .memories-section {
     position: relative;
     padding: 20px 0;
@@ -96,6 +103,41 @@
     }
   }
 
+  // ===== Flutuação suave das fotos =====
+  @keyframes float-drift-1 {
+    0%, 100% {
+      translate: 0 0;
+    }
+
+    50% {
+      translate: 0 -24px;
+    }
+  }
+
+  @keyframes float-drift-2 {
+    0%, 100% {
+      translate: 0 10px;
+    }
+
+    50% {
+      translate: 0 -21px;
+    }
+  }
+
+  @keyframes float-drift-3 {
+    0%, 100% {
+      translate: 0 0;
+    }
+
+    40% {
+      translate: 0 -10px;
+    }
+
+    70% {
+      translate: 0 10px;
+    }
+  }
+
   .memories-photos {
     position: absolute;
     inset: 0;
@@ -111,13 +153,14 @@
     pointer-events: auto; // reativa interação só nas fotos, se quiser
   }
 
-  // Distribuídas em 3 "faixas" horizontais equidistantes (~16%, 50%, 84%)
-  // e verticalmente escalonadas, pra manter espaçamento uniforme no desktop
   .photo-1 {
     width: 380px;
     top: 10%;
     left: 16%;
     transform: translateX(-50%) rotate(-6deg);
+
+    animation: float-drift-1 9s ease-in-out infinite;
+    animation-delay: -2s;
   }
 
   .photo-2 {
@@ -125,6 +168,9 @@
     top: 20%;
     left: 50%;
     transform: translateX(-50%) rotate(5deg);
+
+    animation: float-drift-2 11s ease-in-out infinite;
+    animation-delay: -5s;
   }
 
   .photo-3 {
@@ -132,6 +178,9 @@
     bottom: 8%;
     left: 84%;
     transform: translateX(-50%) rotate(-3deg);
+
+    animation: float-drift-3 13s ease-in-out infinite;
+    animation-delay: -8s;
   }
 
   @media (max-width: 900px) {
@@ -169,15 +218,9 @@
 
     .memories-wrapper {
       min-height: auto;
-      mask-image: none;
-      -webkit-mask-image: none;
-      padding: 20px 0;
-    }
-
-    .marquee-bg {
-      position: absolute;
-      inset: 0;
-      // fade só vertical no mobile, pra não perder o efeito de fundo
+      // fade vertical aqui, no container que NÃO é rotacionado —
+      // é isso que garante que o degradê acompanhe a janela visível
+      // de verdade (a mesma lógica que já funciona no desktop)
       mask-image: linear-gradient(
         to bottom,
         transparent 0%,
@@ -192,6 +235,22 @@
         black 85%,
         transparent 100%
       );
+      // reseta o modo de composição herdado do desktop: lá são 2 camadas
+      // (vertical + horizontal) combinadas com "intersect"/"source-in".
+      // aqui é só 1 camada, então isso precisa voltar ao padrão, senão
+      // o navegador tenta compor contra uma segunda camada que não existe
+      // e o fade não aparece de verdade (fica com corte seco)
+      mask-composite: add;
+      -webkit-mask-composite: source-over;
+      padding: 20px 0;
+    }
+
+    .marquee-bg {
+      position: absolute;
+      inset: 0;
+      // sem mask aqui: a .marquee-bg é rotacionada e escalada, então um
+      // fade aplicado nela fica torto depois da rotação e não alinha
+      // com o recorte real do .memories-wrapper
       min-height: 580px;
     }
 
@@ -218,8 +277,7 @@
       align-self: center !important;
       margin: 0 !important;
       // molduras tipo polaroid, ajuda a "ancorar" a foto e disfarça
-      // qualquer imagem com proporção diferente
-      border: 6px solid #fff;
+      // qualquer imagem com proporção diferente    
       box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
       aspect-ratio: 4 / 5;
     }

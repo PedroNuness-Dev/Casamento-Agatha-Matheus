@@ -29,6 +29,20 @@ export class ConviteComponent implements OnInit, AfterViewInit, OnDestroy {
   minutos = signal(0);
   segundos = signal(0);
 
+  carouselImages: string[] = [    
+    'img-04.jpeg',        
+    'img-07.jpeg',
+    'img-08.jpeg',
+    'img-05.jpeg',
+    'img-09.jpeg',
+    'img-06.jpeg',
+    'img-010.jpeg',
+    'img-011.jpeg',
+    'img-01.jpeg',
+    'img-02.jpeg',
+    'img-03.jpeg',
+  ];
+
   private timer: any;
 
   // Data do casamento

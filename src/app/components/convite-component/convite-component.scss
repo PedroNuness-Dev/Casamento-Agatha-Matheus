@@ -3,6 +3,11 @@
   overflow-x: hidden;
   box-sizing: border-box;
 
+  $marrom-escuro:  #4b3428;
+  $marrom-acento:  #9E7A5F;
+  $bg-creme:       #F7EBDF;
+  $bg-card:        #faf8f6;
+
   *,
   *::before,
   *::after {
@@ -752,6 +757,203 @@
     color: #7d746d; 
   }
 
+  .carousel-connector {
+    display: block;
+    width: 34px;
+    height: auto;
+    margin: 30px auto 0;
+    color: #6f5a4a;
+    opacity: 0.65;
+  }
+
+  .carousel-caption {
+    margin: 12px auto 0;
+    padding: 0 20px;
+    font-family: "Alice", serif;
+    font-size: 3rem;
+    letter-spacing: 1.5px;
+    color: #6f5a4a;
+    opacity: 0.8;
+    text-align: center;
+  }
+ 
+  // ===== Fechamento: linha discreta de saída ==========
+ 
+  .carousel-outro {
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    padding: 0 20px;
+  }
+ 
+  .carousel-outro-line {
+    width: 100%;
+    max-width: 180px;
+    height: 1px;
+    background: linear-gradient(
+      to right,
+      transparent,
+      rgba($marrom-acento, 0.35),
+      transparent
+    );
+  }
+ 
+  @media (max-width: 600px) {
+    .carousel-connector {
+      width: 150px;
+      margin-top: 22px;
+    }
+
+    .carousel-caption {
+      font-size: 0.85rem;
+      letter-spacing: 1.5px;
+    }
+  }  
+ 
+  .flower-carousel {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    margin-top: 26px;
+    padding: 10px 0 20px;
+    margin-bottom: 50px;
+ 
+    // fade suave só nas bordas laterais
+    mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      black 6%,
+      black 94%,
+      transparent 100%
+    );
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      black 6%,
+      black 94%,
+      transparent 100%
+    );
+  }
+
+  // sprite invisível (não usado no momento pelo carrossel, mantido caso volte a ser referenciado via <use>)
+  .carousel-sprite-defs {
+    position: absolute;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+  }
+ 
+  .flower-carousel-track {
+    display: flex;
+    align-items: center;
+    width: max-content;
+    gap: 40px;
+    animation: flower-carousel-scroll 100s linear infinite;
+    will-change: transform;
+  }
+ 
+  // ---------- Card (porta-retrato estilo polaroid, minimalista) ----------
+
+  .flower-carousel-item {
+    width: 340px;   
+    height: 420px;  
+  }
+
+  .polaroid-frame {
+    width: 100%;
+    height: 100%;
+    background: $bg-card;
+    padding: 12px 12px 0;
+    display: flex;
+    flex-direction: column;
+    border-radius: 3px;
+    box-shadow: 0 8px 20px rgba($marrom-escuro, 0.12);
+  }
+
+  .polaroid-photo {
+    position: relative;
+    flex: 1 1 auto;
+    overflow: hidden;
+    background: $bg-creme;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+  }
+
+  // perfuração de filme discreta — uma única linha fina entre foto e legenda
+  .film-perf {
+    display: block;
+    flex: 0 0 auto;
+    height: 6px;
+    margin: 9px -12px 0;
+    background-image: radial-gradient(circle, rgba($marrom-acento, 0.4) 1px, transparent 1.1px);
+    background-size: 10px 6px;
+    background-repeat: repeat-x;
+    background-position: center;
+  }
+
+  // aba inferior fina, com a legenda manuscrita
+  .polaroid-caption {
+    flex: 0 0 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 -12px;
+  }
+
+  .polaroid-caption-text {
+    font-family: "Caveat", cursive;
+    font-size: 1.15rem;
+    line-height: 1;
+    color: rgba($marrom-escuro, 0.55);
+    white-space: nowrap;
+  }
+
+  // ---------- Divisor entre fotos ----------
+  // flor de 5 pétalas (mesma geometria do title-connector/frame-corner),
+  // recolorida no tom discreto do carrossel via os seletores abaixo
+ 
+  .flower-divider {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    opacity: 0.55;
+ 
+    svg {
+      width: 100%;
+      height: 100%;
+ 
+      ellipse {
+        fill: $marrom-acento;
+        opacity: 0.55;
+      }
+ 
+      .flower-center {
+        fill: $marrom-escuro;
+      }
+    }
+  }
+ 
+  @keyframes flower-carousel-scroll {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      // como a sequência de itens está duplicada no template,
+      // andar exatamente 50% da largura fecha o loop sem "salto" visível
+      transform: translateX(-50%);
+    }
+  }
+
   @media (max-width: 900px) {
 
     .countdown-container{
@@ -777,6 +979,38 @@
       .frame-corner {
         width: clamp(35px, 6vw, 55px);
       }
+    }
+
+    .flower-carousel-item {
+      width: 260px;   
+      height: 320px;  
+    }
+
+    .polaroid-frame {
+      padding: 9px 9px 0;
+    }
+
+    .film-perf {
+      height: 5px;
+      margin: 7px -9px 0;
+      background-size: 8px 5px;
+    }
+
+    .polaroid-caption {
+      flex-basis: 30px;
+      height: 30px;
+      margin: 0 -9px;
+    }
+    .polaroid-caption-text { font-size: 0.9rem; }
+ 
+    .flower-divider {
+      width: 36px;
+      height: 36px;
+    }
+ 
+    .flower-carousel-track {
+      gap: 30px;
+      animation-duration: 100s;
     }
   }
 
@@ -885,6 +1119,43 @@
     .envelope-section {
       min-height: 20px;
       padding: 40px 0 100px;
+    }
+
+    .flower-carousel {
+      margin-top: 24px;
+      padding: 6px 0 20px;
+    }
+ 
+    .flower-carousel-item {
+      width: 195px;   
+      height: 242px;  
+    }
+
+    .polaroid-frame {
+      padding: 7px 7px 0;
+    }
+
+    .film-perf {
+      height: 4px;
+      margin: 5px -7px 0;
+      background-size: 7px 4px;
+    }
+
+    .polaroid-caption {
+      flex-basis: 24px;
+      height: 24px;
+      margin: 0 -7px;
+    }
+    .polaroid-caption-text { font-size: 0.75rem; }
+ 
+    .flower-divider {
+      width: 30px;
+      height: 30px;
+    }
+ 
+    .flower-carousel-track {
+      gap: 20px;
+      animation-duration: 100s;
     }
 
     // ================================

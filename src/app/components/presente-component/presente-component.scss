@@ -96,6 +96,11 @@
     box-shadow: 0 10px 30px rgba(0, 0, 0, .05);
     transition: .3s;
 
+    // agora é um <a>: neutraliza estilos padrão de link
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+
     &:hover {
       transform: translateY(-6px);
       box-shadow: 0 20px 40px rgba(0, 0, 0, .08);
@@ -115,7 +120,7 @@
     stroke-linejoin: round;
   }
 
-  // nova: sombra sutil embaixo da caixa
+  // sombra sutil embaixo da caixa
   .gift-shadow {
     fill: $marrom;
     opacity: 0.08;
@@ -167,6 +172,15 @@
     border-radius: 8px;
     margin: 8px 0 16px;
 
+    // agora é um <a>: neutraliza estilos padrão de link
+    text-decoration: none;
+    cursor: pointer;
+    transition: opacity .2s;
+
+    &:hover {
+      opacity: .85;
+    }
+
     .badge-icon {
       width: 14px;
       height: 14px;
@@ -184,6 +198,13 @@
 
     &.sem-link {
       padding-left: 20px;
+    }
+
+    // o texto + link ficam dentro de um único span,
+    // que agora é o item flex (junto do ícone), então o
+    // texto flui normalmente em vez de quebrar palavra a palavra
+    span {
+      display: inline;
     }
 
     a {
