@@ -770,7 +770,7 @@
     margin: 12px auto 0;
     padding: 0 20px;
     font-family: "Alice", serif;
-    font-size: 3rem;
+    font-size: 2rem;
     letter-spacing: 1.5px;
     color: #6f5a4a;
     opacity: 0.8;
@@ -819,21 +819,7 @@
     padding: 10px 0 20px;
     margin-bottom: 50px;
  
-    // fade suave só nas bordas laterais
-    mask-image: linear-gradient(
-      to right,
-      transparent 0%,
-      black 6%,
-      black 94%,
-      transparent 100%
-    );
-    -webkit-mask-image: linear-gradient(
-      to right,
-      transparent 0%,
-      black 6%,
-      black 94%,
-      transparent 100%
-    );
+  
   }
 
   // sprite invisível (não usado no momento pelo carrossel, mantido caso volte a ser referenciado via <use>)
@@ -856,8 +842,8 @@
   // ---------- Card (porta-retrato estilo polaroid, minimalista) ----------
 
   .flower-carousel-item {
-    width: 340px;   
-    height: 420px;  
+    width: 400px;
+    height: 495px;
   }
 
   .polaroid-frame {
@@ -982,8 +968,8 @@
     }
 
     .flower-carousel-item {
-      width: 260px;   
-      height: 320px;  
+      width: 310px;
+      height: 385px;
     }
 
     .polaroid-frame {
@@ -1127,8 +1113,8 @@
     }
  
     .flower-carousel-item {
-      width: 195px;   
-      height: 242px;  
+      width: 225px;
+      height: 278px;
     }
 
     .polaroid-frame {
@@ -1146,7 +1132,9 @@
       height: 24px;
       margin: 0 -7px;
     }
-    .polaroid-caption-text { font-size: 0.75rem; }
+    .polaroid-caption-text { 
+      font-size: 0.75rem; 
+    }
  
     .flower-divider {
       width: 30px;
