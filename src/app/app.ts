@@ -40,7 +40,7 @@ export class App {
 
   private generateFlowers(): void {
 
-    const amount = 50;
+    const amount = 35;
 
     this.flowers = Array.from(
       { length: amount },
